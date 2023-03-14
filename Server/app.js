@@ -1,15 +1,16 @@
 //require('./Config/Config');
 const express = require('express');
-const { initializeApp, cert } = require("firebase-admin");
-const { getFirestore } = require("firebase-admin/firestore");
+const app = express();
+
+const admin = require('firebase-admin');
 const serviceAccount = require("../firebase.json");
 
-initializeApp({
-  credential: cert(serviceAccount),
-});
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+  });
 
-const db = getFirestore();
-const app = express();
+//const db = getFirestore();
+
 
 const joinPath = require('path.join');
 const bodyParser = require('body-parser');
