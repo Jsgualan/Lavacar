@@ -11,5 +11,5 @@ const db = getFirestore()
 
 
 module.exports = {
-    db
+    db,
 };
