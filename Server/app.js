@@ -1,6 +1,6 @@
 //require('./Config/Config');
 const express = require('express');
-const { initializeApp, cert } = require("firebase-admin/app");
+const { initializeApp, cert } = require("firebase-admin");
 const { getFirestore } = require("firebase-admin/firestore");
 const serviceAccount = require("../firebase.json");
 
