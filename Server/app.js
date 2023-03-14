@@ -15,6 +15,6 @@ app.get('/', function (req, res) {
     res.status(200).send({EC: 'ECUADOR', PROJECT: "ARCHIVOS", ENVIRONMENT: 'LAVACAR', VERSION: '1.0.0', BY: 'OASIS', INIT: '2023/03/13', ARCHITECT: 'JUNIOR'});
 });
 
-app.listen(3030, () => {
+app.listen(3000, () => {
     console.log('Escuchando puerto: ', 3000);
 });
