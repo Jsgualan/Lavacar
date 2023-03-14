@@ -1,7 +1,6 @@
 {
   "name": "applavacar",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +14,15 @@
     "express": "^4.18.2",
     "firebase-admin": "^11.5.0",
     "path.join": "^1.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://Wiinap@bitbucket.org/Wiinap/lavacar.git"
+  },
+  "bugs": {
+    "url": "https://bitbucket.org/Wiinap/lavacar/issues"
+  },
+  "homepage": "https://bitbucket.org/Wiinap/lavacar#readme",
+  "description": ""
 }
