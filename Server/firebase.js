@@ -4,6 +4,7 @@ const { getFirestore } = require("firebase-admin/firestore");
 
 initializeApp({
   credential: applicationDefault(),
+  projectId: 'lavacar-ac83',
 });
 
 const db = getFirestore();
