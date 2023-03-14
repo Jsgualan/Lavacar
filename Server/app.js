@@ -1,7 +1,7 @@
 //require('./Config/Config');
 const express = require('express');
+const {db} = require('.firebase');
 const app = express();
-const {db} = require('.firebase')
 const joinPath = require('path.join');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
