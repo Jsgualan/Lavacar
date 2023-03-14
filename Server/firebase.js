@@ -8,14 +8,5 @@ initializeApp({
   credential: cert(serviceAccount),
 });
 
-initializeApp({
-  credential: applicationDefault(),
-  projectId: 'lavacar-ac83',
-});
-
 const db = getFirestore();
-
-module.exports = {
-  db,
-};
 
