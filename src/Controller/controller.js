@@ -10,7 +10,8 @@ app.get('/login/:email/:password', async (req, res) => {
         id: doc.id,
         ...doc.data()
     }))*/
-    console.log(response);
+    res.status(200).send({en: 1, u: response.data()});
+    //console.log(response.data());
     /*if (user.length > 0) {
         return res.status(200).send({en: 1, u: user});
     }
