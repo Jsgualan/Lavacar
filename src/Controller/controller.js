@@ -5,9 +5,12 @@ const { db } = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
     const consult = db.collection('User').where('email','==', req.params.email).where('password', '==', req.params.password)
-    consult.get().then((user) => {
-        console.log(user.docs[0].data());
-    }) 
+    const response = consult.docs[0].map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    })) 
+
+    console.log(response);
     
     /*if (user.length > 0) {
         return res.status(200).send({en: 1, u: user});
