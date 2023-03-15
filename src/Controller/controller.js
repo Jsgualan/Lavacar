@@ -3,7 +3,7 @@ const app = express();
 const { FieldValue } = require('firebase-admin/firestore')
 const { db } = require('../firebase')
 
-app.get('/login', async (req, res) => {
+app.get('/login/:type', async (req, res) => {
     const type = req.body.type;
     const consult = db.collection('Rol').doc(type)
     const result = await consult.get()
