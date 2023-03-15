@@ -3,9 +3,9 @@ const app = express();
 const { FieldValue } = require('firebase-admin/firestore')
 const { db } = require('../firebase')
 
-app.get('/login/:email/:password', async (req, res) => {
+app.get('/login/:email', async (req, res) => {
     //const { email, password } = req.params
-    const result = db.collection('Rol').doc(req.params.email, req.params.password);
+    const result = db.collection('Rol').doc(req.params.email);
     const doc = await peopleRef.get()
     if (!doc.exists) {
         return res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecta'});
