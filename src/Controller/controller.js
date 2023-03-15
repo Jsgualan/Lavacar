@@ -11,7 +11,7 @@ app.get('/login/:email/:password', async (req, res) => {
     })) 
     
     if (user.length > 0) {
-        return res.status(200).send({en: 1, u: response[0]});
+        return res.status(200).send({en: 1, u: response});
     }
     res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecto '});*/
 })
