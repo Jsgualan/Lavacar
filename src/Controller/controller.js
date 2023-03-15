@@ -13,7 +13,7 @@ app.get('/login/:email/:password', async (req, res) => {
     if (user.length > 0) {
         return res.status(200).send({en: 1, u: user});
     }
-    res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecto '});*/
+    res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecto '});
 })
 
 app.get('/rol', async (req, res) => {
