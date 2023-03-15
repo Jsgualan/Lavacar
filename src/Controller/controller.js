@@ -6,7 +6,7 @@ const { db } = require('../firebase')
 app.get('/login/:type', async (req, res) => {
     //const { email, password } = req.params
     try {
-        const userRef = db.collection("Rol").doc(req.params.type);
+        const userRef = db.collection('Rol').where('type','==',req.params.type);
         const response = await userRef.get();
         res.send(response.data());
       } catch(error) {
