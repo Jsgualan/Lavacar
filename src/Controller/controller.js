@@ -5,7 +5,7 @@ const { db } = require('../firebase')
 
 app.get('/login/:type', async (req, res) => {
     const type = req.body.type;
-    const consult = db.collection('Rol').doc(1)
+    const consult = db.collection('Rol').doc(type)
     const result = await consult.get()
     if (!result.exists) {
         //return res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecta'});
