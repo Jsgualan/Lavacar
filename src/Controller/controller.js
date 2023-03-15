@@ -5,15 +5,13 @@ const { db } = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
     const consult = db.collection('User').where('email','==', req.params.email).where('password', '==', req.params.password)
-    const response = consult.docs[0].map(doc => ({
+    const response = consult.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
     })) 
-
-    console.log(response);
     
-    /*if (user.length > 0) {
-        return res.status(200).send({en: 1, u: user});
+    if (user.length > 0) {
+        return res.status(200).send({en: 1, u: response[0]});
     }
     res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecto '});*/
 })
