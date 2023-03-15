@@ -4,7 +4,8 @@ const { FieldValue } = require('firebase-admin/firestore')
 const { db } = require('../firebase')
 
 app.get('/login', async (req, res) => {
-    const consult = db.collection('Rol').doc(req.body.type)
+    const type = req.body.type;
+    const consult = db.collection('Rol').doc(type)
     const result = await consult.get()
     if (!result.exists) {
         //return res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecta'});
