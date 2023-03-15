@@ -5,11 +5,8 @@ const { db } = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
     const querySnapshot = await db.collection('User').where('email','==', req.params.email).where('password', '==', req.params.password).get()
-    const response = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()[0]
-    }))
-    console.log(response);
+    const user = querySnapshot.data();
+    console.log(user);
     /*const user = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
