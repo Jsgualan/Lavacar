@@ -7,9 +7,9 @@ app.get('/login/:type', async (req, res) => {
     const consult = db.collection('Rol').doc(req.params.type)
     const result = await consult.get()
     if (!result.exists) {
-        return res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecta'});
+        //return res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecta'});
     }
-    res.status(200).send({en: 1, r: result.data()});
+    //res.status(200).send({en: 1, r: result.data()});
 })
 
 app.get('/rol', async (req, res) => {
