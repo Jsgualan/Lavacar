@@ -5,14 +5,15 @@ const { db } = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
     const querySnapshot = await db.collection('User').where('email','==', req.params.email).where('password', '==', req.params.password).get()
+    console.log(querySnapshot.data());
     /*const user = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
-    }))*/ 
+    }))
     if (!querySnapshot.exists) {
         return res.status(200).send({en: 1, u: querySnapshot.data()});
     }
-    res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecto '});
+    res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecto '});*/
 })
 
 app.get('/rol', async (req, res) => {
