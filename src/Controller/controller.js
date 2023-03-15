@@ -10,7 +10,7 @@ app.get('/login/:type', async (req, res) => {
         const response = await userRef.get();
         res.send(response.data());
       } catch(error) {
-        res.send(error);
+        //res.send(error);
       }
 })
 
