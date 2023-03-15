@@ -5,8 +5,7 @@ const { db } = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
 
-    const doc = await db.collection('User').doc(req.params.email, req.params.password).get()
-
+    const doc = await db.collection('User').where('email','==', req.params.email).where('password', '==', req.params.password).get()
     console.log({id:doc.id})
 })
 
