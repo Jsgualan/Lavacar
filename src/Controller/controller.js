@@ -6,12 +6,12 @@ const { db } = require('../firebase')
 app.get('/login/:email', async (req, res) => {
     //const { email, password } = req.params
     const result = db.collection('Rol').doc(req.params.email);
-    const doc = await peopleRef.get()
-    if (!doc.exists) {
+    const response = await result.get()
+    if (!response.exists) {
         return res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecta'});
     }
 
-    res.status(200).send({en: 1, u: result.data()});
+    res.status(200).send({en: 1, u: response.data()});
 })
 
 app.get('/rol', async (req, res) => {
