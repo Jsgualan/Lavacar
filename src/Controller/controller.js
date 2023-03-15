@@ -20,7 +20,7 @@ app.get('/rol', async (req, res) => {
         ...doc.data()
     })) 
     console.log(rol);
-    if (rol.length <= 0) {
+    if (rol.length > 0) {
         return res.status(200).send({en: 1, r: rol});
     }
     res.status(200).send({ en: -1, m:'No hay datos que mostrar'});
