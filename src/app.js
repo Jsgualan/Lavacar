@@ -6,15 +6,15 @@ const { db } = require('./firebase.js')
 
 app.use(express.json())
 
-/*const friends = {
+const friends = {
     'james': 'friend',
     'larry': 'friend',
     'lucy': 'friend',
     'banana': 'enemy',
 }
 
-app.get('/friends', async (req, res) => {
-    const peopleRef = db.collection('people').doc('associates')
+app.get('/rol', async (req, res) => {
+    const peopleRef = db.collection('rol').doc('qSyypshKJcmHeeO8R2np')
     const doc = await peopleRef.get()
     if (!doc.exists) {
         return res.sendStatus(400)
@@ -23,7 +23,7 @@ app.get('/friends', async (req, res) => {
     res.status(200).send(doc.data())
 })
 
-app.get('/friends/:name', (req, res) => {
+/*app.get('/friends/:name', (req, res) => {
     const { name } = req.params
     if (!name || !(name in friends)) {
         return res.sendStatus(404)
