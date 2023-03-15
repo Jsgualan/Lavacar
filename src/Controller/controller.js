@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const { FieldValue } = require('firebase-admin/firestore')
-const { db } = require('./firebase.js')
+const { db } = require('../firebase')
 
 app.get('/rol', async (req, res) => {
     const peopleRef = db.collection('rol').doc('qSyypshKJcmHeeO8R2np')
