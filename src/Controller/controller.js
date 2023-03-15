@@ -3,8 +3,9 @@ const app = express();
 const { FieldValue } = require('firebase-admin/firestore')
 const { db } = require('../firebase')
 
-app.get('/login', async (req, res) => {
-    const doc = await db.collection('Rol').doc('qSyypshKJcmHeeO8R2np').get()
+app.get('/login/:id', async (req, res) => {
+
+    const doc = await db.collection('Rol').doc(req.params.id).get()
 
     console.log({
         id:doc.id,
@@ -18,7 +19,7 @@ app.get('/rol', async (req, res) => {
         id: doc.id,
         ...doc.data()
     })) 
-    console.log(rol);
+    
     if (rol.length > 0) {
         return res.status(200).send({en: 1, r: rol});
     }
