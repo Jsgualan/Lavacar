@@ -19,10 +19,11 @@ app.get('/rol', async (req, res) => {
         id: doc.id,
         ...doc.data()
     })) 
+    console.log(rol);
     if (!rol.exists) {
         return res.status(200).send({ en: -1, m:'No hay datos que mostrar'});
     }
-    res.status(200).send({en: 1, r: rol.data()});
+    res.status(200).send({en: 1, r: rol});
 })
 
 
