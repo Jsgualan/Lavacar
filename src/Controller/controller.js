@@ -9,7 +9,7 @@ app.get('/login/:email/:password', async (req, res) => {
         id: doc.id,
         ...doc.data()
     }))*/ 
-    if (querySnapshot.length > 0) {
+    if (!querySnapshot.exists) {
         return res.status(200).send({en: 1, u: querySnapshot.data()});
     }
     res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecto '});
