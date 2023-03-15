@@ -4,8 +4,9 @@ const { FieldValue } = require('firebase-admin/firestore')
 const { db } = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
-    const querySnapshot = await db.collection('User').where('email','==', req.params.email).where('password', '==', req.params.password).get()
-    console.log(querySnapshot.data());
+    const querySnapshot = await db.collection('User').where('email','==', req.params.email).where('password', '==', req.params.password)
+    const response = querySnapshot.data()
+    console.log(response);
     /*const user = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
