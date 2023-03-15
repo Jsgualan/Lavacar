@@ -1,12 +1,26 @@
-const express = require('express')
+const express = require('express');
+const app = express();
+const joinPath = require('path.join');
+const bodyParser = require('body-parser');
 const { FieldValue } = require('firebase-admin/firestore')
-const app = express()
-const port = 8383
 const { db } = require('./firebase.js')
 
-app.use(express.json())
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
-const friends = {
+app.use(express.static(joinPath(__dirname,'./Controller')));
+
+app.get('/', function (req, res) {
+    res.status(200).send({EC: 'ECUADOR', PROJECT: "ARCHIVOS", ENVIRONMENT: 'CETECSA', VERSION: '1.0.0', BY: 'OASIS', INIT: '2022/09/27', ARCHITECT: 'ANGELS'});
+});
+
+app.listen(8383, () => {
+    console.log('Escuchando puerto: ', 8383);
+});
+
+
+
+/*const friends = {
     'james': 'friend',
     'larry': 'friend',
     'lucy': 'friend',
@@ -23,7 +37,7 @@ app.get('/rol', async (req, res) => {
     res.status(200).send(doc.data())
 })
 
-/*app.get('/friends/:name', (req, res) => {
+app.get('/friends/:name', (req, res) => {
     const { name } = req.params
     if (!name || !(name in friends)) {
         return res.sendStatus(404)
@@ -59,5 +73,3 @@ app.delete('/friends', async (req, res) => {
     })
     res.status(200).send(friends)
 })*/
-
-app.listen(port, () => console.log(`Server has started on port: ${port}`))
