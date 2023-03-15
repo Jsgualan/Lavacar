@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const joinPath = require('path.join');
 const bodyParser = require('body-parser');
-const { FieldValue } = require('firebase-admin/firestore')
-const { db } = require('./firebase.js')
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
