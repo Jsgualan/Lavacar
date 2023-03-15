@@ -14,12 +14,15 @@ app.get('/login/:type', async (req, res) => {
 })
 
 app.get('/rol', async (req, res) => {
-    const consult = db.collection('Rol').doc('qSyypshKJcmHeeO8R2np')
-    const result = await consult.get()
-    if (!result.exists) {
+    const querySnapshot = await db.collection("Rol").get()
+    const rol = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    })) 
+    if (!rol.exists) {
         return res.status(200).send({ en: -1, m:'No hay datos que mostrar'});
     }
-    res.status(200).send({en: 1, r: result.data()});
+    res.status(200).send({en: 1, r: rol.data()});
 })
 
 
