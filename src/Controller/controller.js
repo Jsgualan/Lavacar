@@ -41,10 +41,11 @@ app.post('/saveOperator', async (req, res) => {
         "state": true
     }
 
-    const consult = await db.collection('Operator').doc(req.body.dni).set(data).then((operator)=>{
-        console.log(operator);
-    })
-    
+    const consult = await db.collection('Operator').doc(req.body.dni).set(data)
+    if(consult.length > 0){
+        return res.status(200).send({en: 1, m: "Operador registrado correctamente"});
+    }
+    res.status(200).send({ en: -1, m:'Ocurrio un error. Intente nuevamente'});
 
 })
 
