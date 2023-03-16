@@ -29,7 +29,7 @@ app.get('/operator', async (req, res) => {
     res.status(200).send({ en: -1, m:'No hay resultados que mostrar'});
 })
 
-app.get('/verifiqueOperator', async (req, res) => {
+app.get('/checkOperator', async (req, res) => {
     const consult = await db.collection('Operator').where('dni','==', req.params.dni).get()
     const response = consult.docs.map(doc => ({
         id: doc.id,
