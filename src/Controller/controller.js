@@ -37,11 +37,14 @@ app.post('/saveOperator', async (req, res) => {
         "dni": req.body.dni,
         "phone": req.body.phone,
         "password": req.body.password,
-        "post": req.body.post
+        "post": req.body.post,
+        "state": true
     }
 
-    const consult = await db.collection('Operator').doc(req.body.dni).set(data)
-    console.log(consult);
+    const consult = await db.collection('Operator').doc(req.body.dni).set(data).then((operator)=>{
+        console.log(operator);
+    })
+    
 
 })
 
