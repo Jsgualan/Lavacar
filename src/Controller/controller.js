@@ -41,9 +41,9 @@ app.post('/saveOperator', async (req, res) => {
         "state": true
     }
     try{
-        const consult = await db.collection('Operator').where('dni','==', req.body.dni).get()
+        const consult = await db.collection('Operator').where('dni','==', req.param.dni).get()
         if(consult.exists){
-            return res.status(200).send({en: -1, m: "Operador registrado anteirormente"})    
+            return res.status(200).send({en: -1, m: "Operador registrado anteriormente"})    
         }
 
         await db.collection('Operator').doc(req.body.dni).set(data)
