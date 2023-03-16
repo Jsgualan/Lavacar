@@ -31,17 +31,18 @@ app.get('/operator', async (req, res) => {
 
 
 app.post('/saveOperator', async (req, res) => {
-    await db.collection('Operator').doc().set({
-        "name": req.params.name,
-        "last_name": req.params.lastName,
-        "dni": req.params.dni,
-        "phone": req.params.phone,
-        "password": req.params.password,
-        "post": req.params.post
-    }).then((operator) => {
-        console.log(operator);
-        return res.status(200).send({en: 1, m: "Operador registrado correctamente"});
-    })
+    const data = {
+        "name": req.body.name,
+        "last_name": req.body.lastName,
+        "dni": req.body.dni,
+        "phone": req.body.phone,
+        "password": req.body.password,
+        "post": req.body.post
+    }
+
+    const consult = await db.collection('Operator').set(data)
+    console.log(consult);
+
 })
 
 
