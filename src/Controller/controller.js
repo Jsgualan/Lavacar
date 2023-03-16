@@ -40,20 +40,10 @@ app.post('/saveOperator', async (req, res) => {
         "post": req.body.post,
         "state": true
     }
-        const consult = await db.collection('Operator').where('dni','==', req.param.dni).post()
-        const response = consult.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        }))
-        if(response.length >0){
-            res.status(200).send({en: -1, m: "Operador registrado anteriormente"})    
-        }else{
-            await db.collection('Operator').doc(req.body.dni).set(data)
-            res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
-        }
-
         
-        
+    await db.collection('Operator').where("dni","!=",req.params.dni).doc(req.body.dni).set(data)
+    res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
+            
 })
 
 
