@@ -30,6 +30,20 @@ app.get('/operator', async (req, res) => {
 })
 
 
+app.post('/saveOperator', async (req, res) => {
+    await db.collection('Operator').set({
+        "name": req.params.name,
+        "last_name": req.params.lastName,
+        "dni": req.password.dni,
+        "phone": req.params.phone,
+        "password": req.params.password,
+        "post": req.params.post
+    }).then((operator) => {
+        console.log(operator);
+        return res.status(200).send({en: 1, m: "Operador registrado correctamente"});
+    })
+})
+
 
 
 
