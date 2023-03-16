@@ -40,7 +40,7 @@ app.post('/saveOperator', async (req, res) => {
         "post": req.body.post,
         "state": true
     }
-        const consult = await db.collection('Operator').where('dni','==', req.param.dni).get()
+        const consult = await db.collection('Operator').where('dni','==', req.param.dni).post()
         const response = consult.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
