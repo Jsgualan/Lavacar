@@ -40,7 +40,7 @@ app.post('/saveOperator', async (req, res) => {
         "post": req.body.post
     }
 
-    const consult = await db.collection('Operator').set(data)
+    const consult = await db.collection('Operator').doc(req.body.dni).set(data)
     console.log(consult);
 
 })
