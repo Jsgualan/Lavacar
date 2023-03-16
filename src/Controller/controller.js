@@ -31,7 +31,7 @@ app.get('/operator', async (req, res) => {
 
 
 app.post('/saveOperator', async (req, res) => {
-    await db.collection('Operator').set({
+    await db.collection('Operator').doc().set({
         "name": req.params.name,
         "last_name": req.params.lastName,
         "dni": req.params.dni,
