@@ -41,7 +41,8 @@ app.post('/saveOperator', async (req, res) => {
         "state": true
     }
         
-    await db.collection('Operator').doc(req.body.dni).set(data).where("dni","!=",req.params.dni)
+    const consult = await db.collection('Operator').doc(req.body.dni).set(data)
+    console.log(consult);
     res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
             
 })
