@@ -46,11 +46,13 @@ app.post('/saveOperator', async (req, res) => {
             ...doc.data()
         }))
         if(response.length >0){
-            return res.status(200).send({en: -1, m: "Operador registrado anteriormente"})    
+            res.status(200).send({en: -1, m: "Operador registrado anteriormente"})    
+        }else{
+            await db.collection('Operator').doc(req.body.dni).set(data)
+            res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
         }
 
-        await db.collection('Operator').doc(req.body.dni).set(data)
-        res.status(200).send({en: 1, m: "Operador registrado correctamente"})
+        
         
 })
 
