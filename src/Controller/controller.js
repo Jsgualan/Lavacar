@@ -50,9 +50,10 @@ app.get('/hourDay/:id', async (req, res) => {
     })) 
     
     if (response.length > 0) {
-        return res.status(200).send({en: -1, m: "No hay horarios disponibles"});
+       return res.status(200).send({ en: 1, lH:response});
     }
-    res.status(200).send({ en: 1, lH:response});
+    res.status(200).send({en: -1, m: "No hay horarios disponibles"});
+    
 })
 
 app.post('/saveOperator', async (req, res) => {
