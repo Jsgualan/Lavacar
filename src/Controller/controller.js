@@ -42,18 +42,17 @@ app.get('/checkOperator/:dni', async (req, res) => {
     res.status(200).send({ en: 1, m:'Operador permitido'});
 })
 
-app.get('/hourDay/:id', async (req, res) => {
-    const consult = await db.collection('Hour').where('id_day','==', req.body.id).get()
+app.get('/hourday/:id', async (req, res) => {
+    const consult = await db.collection('Hour').where('id_day','==', req.params.id).get()
     const response = consult.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
     })) 
-    console.log(response);
-    if (response.length > 0) {
-       return res.status(200).send({ en: 1, lH:response});
-    }
-    res.status(200).send({en: -1, m: "No hay horarios disponibles"});
     
+    if (response.length > 0) {
+        return res.status(200).send({en: -1, m: "Operador registrado anteriormente"});
+    }
+    res.status(200).send({ en: 1, m:'Operador permitido'});
 })
 
 app.post('/saveOperator', async (req, res) => {
