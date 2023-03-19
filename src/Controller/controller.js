@@ -42,8 +42,8 @@ app.get('/checkOperator/:dni', async (req, res) => {
     res.status(200).send({ en: 1, m:'Operador permitido'});
 })
 
-app.get('/hourday/:id', async (req, res) => {
-    const consult = await db.collection('Hour').where('id_day','==', req.params.id).get()
+app.get('/hourDay/:id', async (req, res) => {
+    const consult = await db.collection('Hour').where('day','==', req.params.id).get()
     const response = consult.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
