@@ -43,7 +43,7 @@ app.get('/checkOperator/:dni', async (req, res) => {
 })
 
 app.get('/hourDay', async (req, res) => {
-    const consult = await db.collection('Schedule').where('id_day','==', req.params.idDay).get()
+    const consult = await db.collection('Schedule').get()
     const response = consult.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
