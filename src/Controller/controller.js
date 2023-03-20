@@ -51,9 +51,9 @@ app.get('/hourDay/:day', async (req, res) => {
     })) 
     
     if (response.length > 0) {
-        return res.status(200).send({en: -1, m: "Operador registrado anteriormente"});
+        return res.status(200).send({en: 1, h: response[0]});
     }
-    res.status(200).send({ en: 1, m:'Operador permitido'});
+    res.status(200).send({ en: -1, m:'No hay horario registradp'});º
 })
 
 app.post('/saveOperator', async (req, res) => {
