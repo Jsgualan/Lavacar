@@ -88,6 +88,8 @@ app.post('/saveReserve', async (req, res) => {
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
     }
+
+    console.log(data);
         
     const consult = await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
