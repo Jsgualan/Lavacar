@@ -82,7 +82,7 @@ app.post('/saveReserve', async (req, res) => {
         "idUser": req.body.idUser,
         "last_name_user": req.params.lastNameUser,
         "late_vehicle": req.params.lateVehicle,
-        "location": firestore.GeoPoint(req.params.latitude,req.params.longitude),
+        "location": new firestore.GeoPoint(req.params.latitude,req.params.longitude),
         "model_vehicle": req.body.modelVehicle,
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
