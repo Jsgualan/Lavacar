@@ -88,7 +88,7 @@ app.post('/saveReserve', async (req, res) => {
         "type_vehicle": req.body.typeVehicle,
     }
         
-    const consult = await db.collection('Reserve').set(data)
+    const consult = await db.collection('Reserve').add(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
             
 })
