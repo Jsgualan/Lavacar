@@ -74,6 +74,7 @@ app.post('/saveOperator', async (req, res) => {
 
 app.post('/saveReserve', async (req, res) => {
     const data = {
+        "idReserve": req.body.idReserve,
         "brand_vehicle": req.body.brandVehicle,
         "color_vehicle": req.body.colorVehicle,
         "date_hour_reserve": req.body.dateHourVehicle,
@@ -88,7 +89,7 @@ app.post('/saveReserve', async (req, res) => {
         "type_vehicle": req.body.typeVehicle,
     }
         
-    const consult = await db.collection('Reserve').doc('ATBBWH2ryqs9Wq6hCR7WzLnApqFV4343F498').set(data)
+    const consult = await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
             
 })
