@@ -67,8 +67,29 @@ app.post('/saveOperator', async (req, res) => {
         "state": true
     }
         
-    const consult = await db.collection('Operator').doc(req.body.dni).set(data)
+    await db.collection('Operator').doc(req.body.dni).set(data)
     res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
+            
+})
+
+app.post('/saveReserve', async (req, res) => {
+    const data = {
+        "brand_vehicle": req.body.brandVehicle,
+        "color_vehicle": req.body.colorVehicle,
+        "date_hour_reserve": req.body.dateHourVehicle,
+        "description_service": req.body.descriptionService,
+        "idOperator": req.body.idOperator,
+        "idUser": req.body.idUser,
+        "last_name_user": req.params.lastNameUser,
+        "late_vehicle": req.params.lateVehicle,
+        "location": firestore.GeoPoint(req.params.latitude,req.params.longitude),
+        "model_vehicle": req.body.modelVehicle,
+        "name_user": req.body.nameUser,
+        "type_vehicle": req.body.typeVehicle,
+    }
+        
+    await db.collection('Reserve').set(data)
+    res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
             
 })
 
