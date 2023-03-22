@@ -112,26 +112,12 @@ app.get('/getReserve/:date', async (req, res) => {
     res.status(200).send({ en: -1, m:'No hoy notificaciones pendientes'});
 })
 
-
-
-
-
-
-
-
-
-app.get('/rol', async (req, res) => {
-    const querySnapshot = await db.collection("Rol").get()
-    const rol = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-    })) 
-
-    if (rol.length > 0) {
-        return res.status(200).send({en: 1, r: rol});
+app.put('/declineNotification/:idReserve', async (req, res) => {
+    const data = {
+        "state": req.body.state,
     }
-    res.status(200).send({ en: -1, m:'No hay datos que mostrar'});
+    await db.collection('Reserve').where('idReserve','==', req.params.idReserve).put(data)
+    res.status(200).send({en: 1, m: "Reserva rechazada correctamente"})    
 })
-
 
 module.exports = app;
