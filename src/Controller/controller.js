@@ -58,6 +58,7 @@ app.get('/hourDay/:day', async (req, res) => {
 
 app.post('/saveOperator', async (req, res) => {
     const data = {
+        "idOperator": req.body.idOperator,
         "name": req.body.name,
         "last_name": req.body.lastName,
         "dni": req.body.dni,
@@ -67,7 +68,7 @@ app.post('/saveOperator', async (req, res) => {
         "state": true
     }
         
-    await db.collection('Operator').doc(req.body.dni).set(data)
+    await db.collection('Operator').doc(req.body.idOperator).set(data)
     res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
             
 })
@@ -88,10 +89,8 @@ app.post('/saveReserve', async (req, res) => {
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
     }
-
-    console.log(data);
         
-    const consult = await db.collection('Reserve').doc(req.body.idReserve).set(data)
+    await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
             
 })
