@@ -113,6 +113,7 @@ app.get('/getReserve/:date', async (req, res) => {
 })
 
 app.put('/declineNotification/:idReserve', async (req, res) => {
+    console.log( req.params.idReserve);
     const data = {
         "state": req.body.state,
     }
