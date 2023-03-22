@@ -78,7 +78,8 @@ app.post('/saveReserve', async (req, res) => {
         "idReserve": req.body.idReserve,
         "brand_vehicle": req.body.brandVehicle,
         "color_vehicle": req.body.colorVehicle,
-        "date_hour_reserve": req.body.dateHourReserve,
+        "date_reserve": req.body.dateReserve,
+        "hour_reserve": req.body.hourReserve,
         "description_service": req.body.descriptionService,
         "idOperator": req.body.idOperator,
         "idUser": req.body.idUser,
@@ -88,6 +89,7 @@ app.post('/saveReserve', async (req, res) => {
         "model_vehicle": req.body.modelVehicle,
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
+        "state": req.body.state,
     }
         
     await db.collection('Reserve').doc(req.body.idReserve).set(data)
