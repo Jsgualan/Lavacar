@@ -107,7 +107,7 @@ app.get('/getNotification/:date', async (req, res) => {
     })) 
     
     if (response.length > 0) {
-        return res.status(200).send({en: 1, lN: response});
+        return res.status(200).send({en: 1, lR: response});
     }
     res.status(200).send({ en: -1, m:'No hoy notificaciones pendientes'});
 })
