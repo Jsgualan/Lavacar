@@ -82,6 +82,7 @@ app.post('/saveReserve', async (req, res) => {
         "hour_reserve": req.body.hourReserve,
         "description_service": req.body.descriptionService,
         "idOperator": req.body.idOperator,
+        "name_operator": req.body.nameOperator,
         "idUser": req.body.idUser,
         "last_name_user": req.body.lastNameUser,
         "late_vehicle": req.body.lateVehicle,
