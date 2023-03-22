@@ -98,7 +98,8 @@ app.post('/saveReserve', async (req, res) => {
 })
 
 app.get('/getNotification/:date', async (req, res) => {
-    const consult = await db.collection('Reserve').where('dateReserve','==', req.params.date).where('state', '==', 1).get()
+    console.log(req.body.date);
+    const consult = await db.collection('Reserve').where('dateReserve','==', req.params.date).get()
     const response = consult.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
