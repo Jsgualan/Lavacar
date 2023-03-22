@@ -90,6 +90,7 @@ app.post('/saveReserve', async (req, res) => {
         "model_vehicle": req.body.modelVehicle,
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
+        "type_service": req.body.typeService,
         "state": req.body.state,
     }
         
