@@ -120,6 +120,7 @@ app.put('/declineNotification/:idReserve', async (req, res) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
+        res.status(200).send({ en: 1, m:'Solicitud rechazada correctamente'});
     })
 })
 
