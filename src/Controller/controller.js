@@ -124,4 +124,18 @@ app.put('/declineNotification/:idReserve', async (req, res) => {
     })
 })
 
+app.put('/addOperatorReserve/:idReserve', async (req, res) => {
+    const data = {
+        "idOperator": req.body.idOperator,
+        "name_operator": req.body.name_operator,
+        "state": req.body.state,
+    }
+    await db.collection('Reserve').where("idReserve","==",req.params.idReserve).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+        res.status(200).send({ en: 1, m:'Reserva registrada correctamente'});
+    })
+})
+
 module.exports = app;
