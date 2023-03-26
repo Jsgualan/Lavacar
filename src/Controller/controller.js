@@ -116,8 +116,11 @@ app.put('/declineNotification/:idReserve', async (req, res) => {
     const data = {
         "state": req.body.state,
     }
-    await db.collection('Reserve').where('idReserve', '==', req.params.idReserve).update(data)
-    res.status(200).send({en: 1, m: "Reserva rechazada correctamente"})    
+    await db.collection('Reserve').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+    })
 })
 
 module.exports = app;
