@@ -116,7 +116,7 @@ app.put('/declineNotification/:idReserve', async (req, res) => {
     const data = {
         "state": req.body.state,
     }
-    await db.collection('Reserve').get().then((querySnapshot) => {
+    await db.collection('Reserve').where("idReserve","==",req.params.idReserve).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
