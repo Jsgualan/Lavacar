@@ -166,4 +166,16 @@ app.put('/editReserve/:idReserve', async (req, res) => {
     })
 })
 
+app.put('/finishReserve/:idReserve', async (req, res) => {
+    const data = {
+        "state": req.body.state,
+    }
+    await db.collection('Reserve').where("idReserve","==",req.params.idReserve).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+        res.status(200).send({ en: 1, m:'Servicio finalizado correctamente'});
+    })
+})
+
 module.exports = app;
