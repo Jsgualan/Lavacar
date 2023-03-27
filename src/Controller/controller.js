@@ -138,4 +138,32 @@ app.put('/addOperatorReserve/:idReserve', async (req, res) => {
     })
 })
 
+app.put('/editReserve/:idReserve', async (req, res) => {
+    const data = {
+        "idReserve": req.body.idReserve,
+        "brand_vehicle": req.body.brandVehicle,
+        "color_vehicle": req.body.colorVehicle,
+        "date_reserve": req.body.dateReserve,
+        "hour_reserve": req.body.hourReserve,
+        "description_service": req.body.descriptionService,
+        "idOperator": req.body.idOperator,
+        "name_operator": req.body.nameOperator,
+        "idUser": req.body.idUser,
+        "last_name_user": req.body.lastNameUser,
+        "late_vehicle": req.body.lateVehicle,
+        "location": new firestore.GeoPoint(req.body.latitude,req.body.longitude),
+        "model_vehicle": req.body.modelVehicle,
+        "name_user": req.body.nameUser,
+        "type_vehicle": req.body.typeVehicle,
+        "type_service": req.body.typeService,
+        "state": req.body.state,
+    }
+    await db.collection('Reserve').where("idReserve","==",req.params.idReserve).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+        res.status(200).send({ en: 1, m:'Reserva editada correctamente'});
+    })
+})
+
 module.exports = app;
