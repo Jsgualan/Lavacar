@@ -193,7 +193,7 @@ app.put('/editOperator/:idOperator', async (req, res) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
-        res.status(200).send({ en: 1, m:'Reserva finalizada correctamente'});
+        res.status(200).send({ en: 1, m:'Operador editado correctamente'});
     })
 })
 
