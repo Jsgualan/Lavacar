@@ -178,4 +178,23 @@ app.put('/finishReserve/:idReserve', async (req, res) => {
     })
 })
 
+app.put('/editOperator/:idOperator', async (req, res) => {
+    const data = {
+        "idOperator": req.body.idOperator,
+        "name": req.body.name,
+        "last_name": req.body.lastName,
+        "dni": req.body.dni,
+        "phone": req.body.phone,
+        "password": req.body.password,
+        "post": req.body.post,
+        "state": true
+    }
+    await db.collection('Operator').where("idOperator","==",req.params.idOperator).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+        res.status(200).send({ en: 1, m:'Reserva finalizada correctamente'});
+    })
+})
+
 module.exports = app;
