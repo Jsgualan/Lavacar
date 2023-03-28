@@ -211,5 +211,20 @@ app.get('/checkUser/:email', async (req, res) => {
     res.status(200).send({ en: -1, m:'Usuario no registrado'});
 })
 
+app.post('/saveUser', async (req, res) => {
+    const data = {
+        "id": req.body.idUser,
+        "email": req.body.email,
+        "last_name": req.body.lastName,
+        "name": req.body.name,
+        "password": req.body.password,
+        "rol": req.body.rol,
+    }
+        
+    await db.collection('User').doc(req.body.idUser).set(data)
+    res.status(200).send({en: 1, m: "Usuario registrado correctamente"})    
+            
+})
+
 
 module.exports = app;
