@@ -197,4 +197,19 @@ app.put('/editOperator/:idOperator', async (req, res) => {
     })
 })
 
+
+app.get('/checkUser/:email', async (req, res) => {
+    const consult = await db.collection('User').where('email','==', req.params.email).get()
+    const response = consult.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    })) 
+    
+    if (response.length > 0) {
+        return res.status(200).send({en: 1, u: response[0]});
+    }
+    res.status(200).send({ en: -1, m:'Usuario no registrado'});
+})
+
+
 module.exports = app;
