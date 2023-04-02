@@ -226,5 +226,17 @@ app.post('/saveUser', async (req, res) => {
             
 })
 
+app.put('/deleteOperator/:idOperator', async (req, res) => {
+    const data = {
+        "state": req.body.state,
+    }
+    await db.collection('Operator').where("idOperator","==",req.params.idOperator).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+        res.status(200).send({ en: 1, m:'Operador eliminado correctamente'});
+    })
+})
+
 
 module.exports = app;
