@@ -19,7 +19,7 @@ app.get('/login/:email/:password', async (req, res) => {
 })
 
 app.get('/operator', async (req, res) => {
-    const consult = await db.collection('User').where('state','==', true).where('idRol', '==', 3).get()
+    const consult = await db.collection('User').where('state','==', true).where('rol', '==', 3).get()
     const response = consult.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
