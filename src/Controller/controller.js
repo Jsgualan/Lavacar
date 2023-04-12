@@ -70,7 +70,6 @@ app.post('/saveOperator', async (req, res) => {
         "rol": req.body.rol,
         "state": true
     }
-    console.log(data);
         
     await db.collection('User').doc(req.body.idUser).set(data)
     res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
@@ -194,6 +193,8 @@ app.put('/editOperator/:idUser', async (req, res) => {
         "post": req.body.post,
         "state": true
     }
+    console.log(data);
+
     await db.collection('User').where("idUser","==",req.params.idUser).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
