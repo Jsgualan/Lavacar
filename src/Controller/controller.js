@@ -232,11 +232,11 @@ app.post('/saveUser', async (req, res) => {
             
 })
 
-app.put('/deleteOperator/:idOperator', async (req, res) => {
+app.put('/deleteOperator/:idUser', async (req, res) => {
     const data = {
         "state": req.body.state,
     }
-    await db.collection('User').where("idUser","==",req.params.idOperator).get().then((querySnapshot) => {
+    await db.collection('User').where("id","==",req.params.idUser).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
