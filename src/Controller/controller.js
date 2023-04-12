@@ -72,7 +72,7 @@ app.post('/saveOperator', async (req, res) => {
     }
     console.log(data);
         
-    await db.collection('User').doc(req.body.idOperator).set(data)
+    await db.collection('User').doc(req.body.idUser).set(data)
     res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
             
 })
