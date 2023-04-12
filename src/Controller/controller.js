@@ -195,7 +195,7 @@ app.put('/editOperator/:idUser', async (req, res) => {
     }
     console.log(data);
 
-    await db.collection('User').where("idUser","==",req.params.idUser).get().then((querySnapshot) => {
+    await db.collection('User').where("id","==",req.params.idUser).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
