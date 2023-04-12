@@ -225,6 +225,7 @@ app.post('/saveUser', async (req, res) => {
         "last_name": req.body.lastName,
         "name": req.body.name,
         "password": req.body.password,
+        "phone": req.body.phone,
         "post": req.body.post,
         "rol": req.body.rol,
         "state": true,
