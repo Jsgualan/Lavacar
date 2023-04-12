@@ -61,7 +61,7 @@ app.post('/saveOperator', async (req, res) => {
     const data = {
         "dni": req.body.dni,
         "email": req.body.email,
-        "idUser": req.body.idUser,
+        "id": req.body.idUser,
         "last_name": req.body.lastName,
         "name": req.body.name,
         "password": req.body.password,
