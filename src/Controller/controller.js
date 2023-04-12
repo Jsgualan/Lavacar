@@ -182,18 +182,19 @@ app.put('/finishReserve/:idReserve', async (req, res) => {
     })
 })
 
-app.put('/editOperator/:idOperator', async (req, res) => {
+app.put('/editOperator/:idUser', async (req, res) => {
     const data = {
-        "id": req.body.idOperator,
-        "name": req.body.name,
-        "last_name": req.body.lastName,
         "dni": req.body.dni,
-        "phone": req.body.phone,
+        "email": req.body.email,
+        "id": req.body.idUser,
+        "last_name": req.body.lastName,
+        "name": req.body.name,
         "password": req.body.password,
+        "phone": req.body.phone,
         "post": req.body.post,
         "state": true
     }
-    await db.collection('User').where("idUser","==",req.params.idOperator).get().then((querySnapshot) => {
+    await db.collection('User').where("idUser","==",req.params.idUser).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
