@@ -17,11 +17,8 @@ app.get('/login/:email/:password', async (req, res) => {
         const consult = await db.collection('Operator').where('email','==', req.params.email).where('password', '==', req.params.password).get()
         const response = consult.docs.map(doc => ({
             id: doc.id,
-            idUser: doc.idOperator,
-            name: doc.name,
-            last_name: doc.last_name,
-            idRol: 3    
-        }))
+            ...doc.data()
+        })) 
 
         if(response.length >0){
             return res.status(200).send({en: 1, u: response[0]});
