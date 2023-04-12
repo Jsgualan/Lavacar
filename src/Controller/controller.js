@@ -32,7 +32,7 @@ app.get('/operator', async (req, res) => {
 })
 
 app.get('/checkOperator/:dni', async (req, res) => {
-    const consult = await db.collection('Operator').where('dni','==', req.params.dni).get()
+    const consult = await db.collection('User').where('dni','==', req.params.dni).get()
     const response = consult.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
@@ -59,7 +59,7 @@ app.get('/hourDay/:day', async (req, res) => {
 
 app.post('/saveOperator', async (req, res) => {
     const data = {
-        "idOperator": req.body.idOperator,
+        "id": req.body.idOperator,
         "name": req.body.name,
         "last_name": req.body.lastName,
         "dni": req.body.dni,
@@ -70,7 +70,7 @@ app.post('/saveOperator', async (req, res) => {
         "state": true
     }
         
-    await db.collection('Operator').doc(req.body.idOperator).set(data)
+    await db.collection('User').doc(req.body.idOperator).set(data)
     res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
             
 })
@@ -182,7 +182,7 @@ app.put('/finishReserve/:idReserve', async (req, res) => {
 
 app.put('/editOperator/:idOperator', async (req, res) => {
     const data = {
-        "idOperator": req.body.idOperator,
+        "id": req.body.idOperator,
         "name": req.body.name,
         "last_name": req.body.lastName,
         "dni": req.body.dni,
@@ -191,7 +191,7 @@ app.put('/editOperator/:idOperator', async (req, res) => {
         "post": req.body.post,
         "state": true
     }
-    await db.collection('Operator').where("idOperator","==",req.params.idOperator).get().then((querySnapshot) => {
+    await db.collection('User').where("idUser","==",req.params.idOperator).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
@@ -232,7 +232,7 @@ app.put('/deleteOperator/:idOperator', async (req, res) => {
     const data = {
         "state": req.body.state,
     }
-    await db.collection('Operator').where("idOperator","==",req.params.idOperator).get().then((querySnapshot) => {
+    await db.collection('User').where("idUser","==",req.params.idOperator).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
