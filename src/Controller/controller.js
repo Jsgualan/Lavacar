@@ -59,14 +59,15 @@ app.get('/hourDay/:day', async (req, res) => {
 
 app.post('/saveOperator', async (req, res) => {
     const data = {
-        "id": req.body.idOperator,
-        "name": req.body.name,
-        "last_name": req.body.lastName,
         "dni": req.body.dni,
         "email": req.body.email,
-        "phone": req.body.phone,
+        "idUser": req.body.idOperator,
+        "last_name": req.body.lastName,
+        "name": req.body.name,
         "password": req.body.password,
+        "phone": req.body.phone,
         "post": req.body.post,
+        "rol": req.body.rol,
         "state": true
     }
         
