@@ -13,8 +13,23 @@ app.get('/login/:email/:password', async (req, res) => {
     
     if (response.length > 0) {
         return res.status(200).send({en: 1, u: response[0]});
+    }else{
+        const consult = await db.collection('Operator').where('email','==', req.params.email).where('password', '==', req.params.password).get()
+        const response = consult.docs.map(doc => ({
+            id: doc.id,
+            idUser: doc.idOperator,
+            name: doc.name,
+            last_name: doc.last_name,
+            idRol: 3    
+        }))
+
+        if(response.length >0){
+            return res.status(200).send({en: 1, u: response[0]});
+        }else{
+            res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecto '}); 
+        }
     }
-    res.status(200).send({ en: -1, m:'Usuario o contraseña incorrecto '});
+    
 })
 
 app.get('/operator', async (req, res) => {
