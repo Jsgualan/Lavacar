@@ -70,6 +70,7 @@ app.post('/saveOperator', async (req, res) => {
         "rol": req.body.rol,
         "state": true
     }
+    console.log(data);
         
     await db.collection('User').doc(req.body.idOperator).set(data)
     res.status(200).send({en: 1, m: "Operador registrado correctamente"})    
