@@ -219,12 +219,15 @@ app.get('/checkUser/:email', async (req, res) => {
 
 app.post('/saveUser', async (req, res) => {
     const data = {
-        "id": req.body.idUser,
+        "dni": req.body.dni,
         "email": req.body.email,
+        "id": req.body.idUser,
         "last_name": req.body.lastName,
         "name": req.body.name,
         "password": req.body.password,
+        "post": req.body.post,
         "rol": req.body.rol,
+        "state": true,
     }
         
     await db.collection('User').doc(req.body.idUser).set(data)
