@@ -1,7 +1,8 @@
 const express = require('express');
 const { firestore } = require('firebase-admin');
 const app = express();
-const db = require('../firebase')
+const { FieldValue } = require('firebase-admin/firestore')
+const { db } = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
     const consult = await db.collection('User').where('email','==', req.params.email).where('password', '==', req.params.password).get()
@@ -96,7 +97,15 @@ app.post('/saveReserve', async (req, res) => {
         "state": req.body.state,
     }
 
-         
+    /*await admin.messaging().sendMulticast({
+        tokens: ["token_1", "token_2"],
+        notification: {
+          title: "Nueva reserva",
+          body: "Se ha solicitado una nueva reserva",
+          imageUrl: "https://my-cdn.com/extreme-weather.png",
+        },
+      });*/
+        
     await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
             
