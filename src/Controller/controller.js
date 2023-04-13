@@ -96,7 +96,7 @@ app.post('/saveReserve', async (req, res) => {
         "state": req.body.state,
     }
 
-    firestore.messaging().sendMulticast({
+    firestore.messaging.sendMulticast({
         tokens: ["daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG"],
         notification: {
           title: "Nueva reserva",
