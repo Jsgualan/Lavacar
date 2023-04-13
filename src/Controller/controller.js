@@ -104,8 +104,7 @@ app.post('/saveReserve', async (req, res) => {
         ...doc.data()
     })) 
 
-    console.log(response[0].token);
-    sendMessage();
+    sendMessage(response[0].token);
       
         
     await db.collection('Reserve').doc(req.body.idReserve).set(data)
@@ -113,9 +112,9 @@ app.post('/saveReserve', async (req, res) => {
             
 })
 
-function sendMessage(){
+function sendMessage(token){
     let data = JSON.stringify({
-        "to": "daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG",
+        "to": token,
         "notification": {
           "body": "New announcement assigned",
           "OrganizationId": "2",
