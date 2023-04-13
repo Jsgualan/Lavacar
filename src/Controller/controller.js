@@ -97,21 +97,48 @@ app.post('/saveReserve', async (req, res) => {
         "state": req.body.state,
     }
 
-    axios({
-        method: 'post',
-        url: 'https://fcm.googleapis.com/fcm/send',
-        headers: {'content-type': 'application/json', authorization: 'key=AAAAcmmgeJU:APA91bHF2JXY4CjvUrzDHYodStt4kjT_VUWOMJBPIak6XGMe_obsvw7Um-i38vdekV71RnIsg9CUt-9uyZP4fTp4W6lNZTaUHX2L2a9ph1Rn5CFJhbLeHkrrXe-t0LGd4YiwW4PP9JB8'},
-        body: { to: "daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG", 
-        notification: { body: 'asd', title: 'asdasd', content_available: true, priority: 'high'}}
-        
-    }).then(function (response){
-        console.log(response);
-    });
+    sendMessage();
+      
         
     await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
             
 })
+
+function sendMessage(){
+    let data = JSON.stringify({
+        "to": "daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG",
+        "notification": {
+          "body": "New announcement assigned",
+          "OrganizationId": "2",
+          "content_available": true,
+          "priority": "high",
+          "subtitle": "Elementary School",
+          "title": "hello"
+        }
+      });
+      
+      let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'https://fcm.googleapis.com/fcm/send',
+        headers: { 
+          'Authorization': 'key=AAAAcmmgeJU:APA91bHF2JXY4CjvUrzDHYodStt4kjT_VUWOMJBPIak6XGMe_obsvw7Um-i38vdekV71RnIsg9CUt-9uyZP4fTp4W6lNZTaUHX2L2a9ph1Rn5CFJhbLeHkrrXe-t0LGd4YiwW4PP9JB8', 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+      
+      axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      
+}
+
 
 app.get('/getReserve/:date', async (req, res) => {
     const consult = await db.collection('Reserve').where('date_reserve','==', req.params.date).where('state','!=', 4).get()
