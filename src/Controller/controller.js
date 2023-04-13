@@ -1,7 +1,6 @@
 const express = require('express');
 const { firestore } = require('firebase-admin');
 const app = express();
-const { FieldValue } = require('firebase-admin/firestore')
 const { db } = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
@@ -97,7 +96,7 @@ app.post('/saveReserve', async (req, res) => {
         "state": req.body.state,
     }
 
-    await  firestore.messaging.sendMulticast({
+    await  firestore.messaging().sendMulticast({
         tokens: ["daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG"],
         notification: {
           title: "Nueva reserva",
