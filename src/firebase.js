@@ -26,12 +26,15 @@ function message(message){
     });
 }*/
 
-var admin = require("firebase-admin");
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
 
-var serviceAccount = require("../firebase.json");
+const serviceAccount = require('../firebase.json');
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
+initializeApp({
+    credential: cert(serviceAccount)
+  });
 
-module.exports = { admin }
+const db = getFirestore();
+
+module.exports = { db }
