@@ -193,8 +193,7 @@ app.put('/editOperator/:idUser', async (req, res) => {
         "post": req.body.post,
         "state": true
     }
-    console.log(data);
-
+    
     await db.collection('User').where("id","==",req.params.idUser).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
@@ -245,6 +244,18 @@ app.put('/deleteOperator/:idUser', async (req, res) => {
             doc.ref.update(data)
         })
         res.status(200).send({ en: 1, m:'Operador eliminado correctamente'});
+    })
+})
+
+app.put('/saveToken/:idUser', async (req, res) => {
+    const data = {
+        "token": req.body.token,
+    }
+    await db.collection('User').where("id","==",req.params.idUser).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+        res.status(200).send({ en: 1, m:'Token guardado correctamente'});
     })
 })
 
