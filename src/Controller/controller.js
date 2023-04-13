@@ -1,5 +1,5 @@
 const express = require('express');
-const { firestore } = require('firebase-admin');
+const admin  = require('firebase-admin');
 const app = express();
 const { db } = require('../firebase')
 
@@ -88,7 +88,7 @@ app.post('/saveReserve', async (req, res) => {
         "idUser": req.body.idUser,
         "last_name_user": req.body.lastNameUser,
         "late_vehicle": req.body.lateVehicle,
-        "location": new firestore.GeoPoint(req.body.latitude,req.body.longitude),
+        "location": new admin.GeoPoint(req.body.latitude,req.body.longitude),
         "model_vehicle": req.body.modelVehicle,
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
@@ -104,7 +104,7 @@ app.post('/saveReserve', async (req, res) => {
         },
     }
 
-    firestore.messaging().send(message).then((response) => {
+    admin.messaging().send(message).then((response) => {
         console.log(response);
     });
      
@@ -165,7 +165,7 @@ app.put('/editReserve/:idReserve', async (req, res) => {
         "idUser": req.body.idUser,
         "last_name_user": req.body.lastNameUser,
         "late_vehicle": req.body.lateVehicle,
-        "location": new firestore.GeoPoint(req.body.latitude,req.body.longitude),
+        "location": new admin.GeoPoint(req.body.latitude,req.body.longitude),
         "model_vehicle": req.body.modelVehicle,
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
