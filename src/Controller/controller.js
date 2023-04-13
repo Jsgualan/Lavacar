@@ -1,7 +1,6 @@
 const express = require('express');
 const { firestore } = require('firebase-admin');
 const app = express();
-const { FieldValue } = require('firebase-admin/firestore')
 const { db } = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
@@ -97,14 +96,16 @@ app.post('/saveReserve', async (req, res) => {
         "state": req.body.state,
     }
 
-    /*await admin.messaging().sendMulticast({
-        tokens: ["token_1", "token_2"],
-        notification: {
-          title: "Nueva reserva",
-          body: "Se ha solicitado una nueva reserva",
-          imageUrl: "https://my-cdn.com/extreme-weather.png",
-        },
-      });*/
+    const options = {
+        method: 'POST',
+        url: 'https://fcm.googleapis.com/fcm/send',
+        headers: { 'cache-control': 'no-cache', 'content-type': 'application/json', authorization: 'key=AIzaSyACT7LuTqRkbbO2TWD4gsAbQx0Wdgzxz6M' },
+        body: { to: token['daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG'], notification: { body: 'Prueba', title: 'Titulo prueba', content_available: true, priority: 'high' }, data: data },
+        json: true
+    };
+    request(options, function (error) {
+        console.log(error);
+    });
         
     await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
