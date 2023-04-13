@@ -1,5 +1,5 @@
 const express = require('express');
-//const { firestore } = require('firebase-admin');
+const { firestore } = require('firebase-admin');
 const app = express();
 const db = require('../firebase')
 
