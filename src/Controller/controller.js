@@ -116,12 +116,11 @@ function sendMessage(token){
     let data = JSON.stringify({
         "to": token,
         "notification": {
-          "body": "New announcement assigned",
-          "OrganizationId": "2",
+          "body": "Notificación",
           "content_available": true,
           "priority": "high",
-          "subtitle": "Elementary School",
-          "title": "hello"
+          "subtitle": "Se ha solicitado una nueva reserva",
+          "title": "Nueva reserva"
         }
       });
       
