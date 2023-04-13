@@ -96,6 +96,15 @@ app.post('/saveReserve', async (req, res) => {
         "type_service": req.body.typeService,
         "state": req.body.state,
     }
+
+    await admin.messaging().sendMulticast({
+        tokens: ["daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG"],
+        notification: {
+          title: "Nueva reserva",
+          body: "Se ha solicitado una nueva reserva",
+          imageUrl: "https://my-cdn.com/extreme-weather.png",
+        },
+      });
         
     await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
@@ -258,6 +267,8 @@ app.put('/saveToken/:idUser', async (req, res) => {
         res.status(200).send({ en: 1, m:'Token guardado correctamente'});
     })
 })
+
+
 
 
 module.exports = app;
