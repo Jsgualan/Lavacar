@@ -1,5 +1,5 @@
-import axios from 'axios';
 const express = require('express');
+const axios = require('axios'); 
 const { firestore } = require('firebase-admin');
 const app = express();
 const { db } = require('../firebase')
