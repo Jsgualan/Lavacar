@@ -1,5 +1,5 @@
+import axios from 'axios';
 const express = require('express');
-const request = require("request");
 const { firestore } = require('firebase-admin');
 const app = express();
 const { db } = require('../firebase')
@@ -104,9 +104,12 @@ app.post('/saveReserve', async (req, res) => {
         body: { to: 'daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG', notification: { body: 'Prueba', title: 'Titulo prueba', content_available: true, priority: 'high' }, data: data },
         json: true
     };
-    request(options, function (error) {
+    axios(options).then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
         console.log(error);
-    });
+      })
         
     await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
