@@ -1,7 +1,7 @@
 const express = require('express');
-const admin  = require('firebase-admin');
+//const { firestore } = require('firebase-admin');
 const app = express();
-const { db } = require('../firebase')
+const db = require('../firebase')
 
 app.get('/login/:email/:password', async (req, res) => {
     const consult = await db.collection('User').where('email','==', req.params.email).where('password', '==', req.params.password).get()
@@ -88,7 +88,7 @@ app.post('/saveReserve', async (req, res) => {
         "idUser": req.body.idUser,
         "last_name_user": req.body.lastNameUser,
         "late_vehicle": req.body.lateVehicle,
-        "location": new admin.GeoPoint(req.body.latitude,req.body.longitude),
+        "location": new db.GeoPoint(req.body.latitude,req.body.longitude),
         "model_vehicle": req.body.modelVehicle,
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
@@ -96,18 +96,7 @@ app.post('/saveReserve', async (req, res) => {
         "state": req.body.state,
     }
 
-    const message = {
-        tokens: ["daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG"],
-        notification: {
-          title: "Nueva reserva",
-          body: "Se ha solicitado una nueva reserva",
-        },
-    }
-
-    admin.messaging().send(message).then((response) => {
-        console.log(response);
-    });
-     
+         
     await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
             
@@ -165,7 +154,7 @@ app.put('/editReserve/:idReserve', async (req, res) => {
         "idUser": req.body.idUser,
         "last_name_user": req.body.lastNameUser,
         "late_vehicle": req.body.lateVehicle,
-        "location": new admin.GeoPoint(req.body.latitude,req.body.longitude),
+        "location": new db.GeoPoint(req.body.latitude,req.body.longitude),
         "model_vehicle": req.body.modelVehicle,
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
