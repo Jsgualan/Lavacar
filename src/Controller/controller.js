@@ -100,7 +100,7 @@ app.post('/saveReserve', async (req, res) => {
         method: 'POST',
         url: 'https://fcm.googleapis.com/fcm/send',
         headers: { 'cache-control': 'no-cache', 'content-type': 'application/json', authorization: 'key=AIzaSyACT7LuTqRkbbO2TWD4gsAbQx0Wdgzxz6M' },
-        body: { to: token['daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG'], notification: { body: 'Prueba', title: 'Titulo prueba', content_available: true, priority: 'high' }, data: data },
+        body: { to: 'daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG', notification: { body: 'Prueba', title: 'Titulo prueba', content_available: true, priority: 'high' }, data: data },
         json: true
     };
     request(options, function (error) {
