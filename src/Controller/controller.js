@@ -101,17 +101,9 @@ app.post('/saveReserve', async (req, res) => {
         method: 'post',
         url: 'https://fcm.googleapis.com/fcm/send',
         headers: {'content-type': 'application/json', authorization: 'key=AAAAcmmgeJU:APA91bHF2JXY4CjvUrzDHYodStt4kjT_VUWOMJBPIak6XGMe_obsvw7Um-i38vdekV71RnIsg9CUt-9uyZP4fTp4W6lNZTaUHX2L2a9ph1Rn5CFJhbLeHkrrXe-t0LGd4YiwW4PP9JB8'},
-        body: {
-            "to": "daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG",
-            "notification": {
-              "body": "New announcement assigned",
-              "OrganizationId": "2",
-              "content_available": true,
-              "priority": "high",
-              "subtitle": "Elementary School",
-              "title": "hello"
-            }
-          }
+        body: { to: "daiN_WAcS8KkIb2HLm73yY:APA91bEGE6FYtKTMV_wunmOHbIgqe5giLBWI4jYXpZxfRVf2bs5D-HxiZw-3FYyZCH1H2wkEkEqjQzA2poqMhJNIT0GBf7ro3cz1d7gtGkHq4-7TfDgQuVLKPVQdIdYzFZq3dRu3UbhG", 
+        notification: { body: 'asd', title: 'asdasd', content_available: true, priority: 'high'}}
+        
     }).then(function (response){
         console.log(response);
     });
