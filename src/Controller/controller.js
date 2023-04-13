@@ -104,7 +104,7 @@ app.post('/saveReserve', async (req, res) => {
         },
     }
 
-    db.messaging().send(message).then((response) => {
+    firestore.messaging().send(message).then((response) => {
         console.log(response);
     });
      
