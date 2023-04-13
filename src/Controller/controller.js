@@ -97,6 +97,14 @@ app.post('/saveReserve', async (req, res) => {
         "state": req.body.state,
     }
 
+
+    const consult = await db.collection('User').where('rol','==', 1).get()
+    const response = consult.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+    })) 
+
+    console.log(response[0].token);
     sendMessage();
       
         
