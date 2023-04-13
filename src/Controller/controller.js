@@ -97,9 +97,8 @@ app.post('/saveReserve', async (req, res) => {
         "state": req.body.state,
     }
 
-
-    const options = {
-        method: 'POST',
+    axios({
+        method: 'post',
         url: 'https://fcm.googleapis.com/fcm/send',
         headers: {'content-type': 'application/json', authorization: 'key=AAAAcmmgeJU:APA91bHF2JXY4CjvUrzDHYodStt4kjT_VUWOMJBPIak6XGMe_obsvw7Um-i38vdekV71RnIsg9CUt-9uyZP4fTp4W6lNZTaUHX2L2a9ph1Rn5CFJhbLeHkrrXe-t0LGd4YiwW4PP9JB8'},
         body: {
@@ -112,14 +111,10 @@ app.post('/saveReserve', async (req, res) => {
               "subtitle": "Elementary School",
               "title": "hello"
             }
-          }};
-
-    axios(options).then(function (response) {
+          }
+    }).then(function (response){
         console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    });
         
     await db.collection('Reserve').doc(req.body.idReserve).set(data)
     res.status(200).send({en: 1, m: "Reserva registrada correctamente"})    
