@@ -304,18 +304,7 @@ app.put('/saveToken/:idUser', async (req, res) => {
 })
 
 
-app.get('/getService', async (req, res) => {
-    const consult = await db.collection('Service').where('state','==', true).get()
-    const response = consult.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-    })) 
-    
-    if (response.length > 0) {
-        return res.status(200).send({en: 1, lS: response});
-    }
-    res.status(200).send({ en: -1, m:'No hay servicios registrados'});
-})
+
 
 
 
