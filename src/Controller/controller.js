@@ -305,7 +305,7 @@ app.put('/saveToken/:idUser', async (req, res) => {
 
 
 app.get('/getService', async (req, res) => {
-    const consult = await db.collection('Service').where('state','==', 1).get()
+    const consult = await db.collection('Service').where('state','==', true).get()
     const response = consult.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
