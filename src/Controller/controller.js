@@ -303,6 +303,18 @@ app.put('/saveToken/:idUser', async (req, res) => {
     })
 })
 
+app.post('/saveService', async (req, res) => {
+    const data = {
+        "id": req.body.idService,
+        "name": req.body.name,
+        "state": true,
+    }
+        
+    await db.collection('Service').doc(req.body.idService).set(data)
+    res.status(200).send({en: 1, m: "Servicio registrado correctamente"})    
+            
+})
+
 app.get('/getService', async (req, res) => {
     const consult = await db.collection('Service').where('state','==', true).get()
     const response = consult.docs.map(doc => ({
@@ -316,6 +328,29 @@ app.get('/getService', async (req, res) => {
     res.status(200).send({ en: -1, m:'No hay resultados que mostrar'});
 })
 
+app.put('/deleteService/:idService', async (req, res) => {
+    const data = {
+        "state": false,
+    }
+    await db.collection('Service').get().where("id","==",req.params.idService).then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+        res.status(200).send({ en: 1, m:'Servicio guardado correctamente'});
+    })
+})
+
+app.put('/updateService/:idService', async (req, res) => {
+    const data = {
+        "name": req.body.name,
+    }
+    await db.collection('Service').get().where("id","==",req.params.idService).then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+        res.status(200).send({ en: 1, m:'Servicio actualizado correctamente'});
+    })
+})
 
 
 
