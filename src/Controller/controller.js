@@ -330,17 +330,17 @@ app.get('/getService', async (req, res) => {
 
 app.put('/deleteService/:idService', async (req, res) => {
     const data = {
-        "state": false,
+        "state": req.body.state,
     }
-    await db.collection('Service').get().where("id","==",req.params.idService).then((querySnapshot) => {
+    await db.collection('Service').where("id","==",req.params.idService).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
-        res.status(200).send({ en: 1, m:'Servicio guardado correctamente'});
+        res.status(200).send({ en: 1, m:'Servicio eliminado correctamente'});
     })
 })
 
-app.put('/updateService/:idService', async (req, res) => {
+app.put('/editService/:idService', async (req, res) => {
     const data = {
         "name": req.body.name,
     }
