@@ -344,7 +344,7 @@ app.put('/editService/:idService', async (req, res) => {
     const data = {
         "name": req.body.name,
     }
-    await db.collection('Service').get().where("id","==",req.params.idService).then((querySnapshot) => {
+    await db.collection('Service').where("id","==",req.params.idService).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
             doc.ref.update(data)
         })
