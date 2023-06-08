@@ -307,6 +307,8 @@ app.post('/saveService', async (req, res) => {
     const data = {
         "id": req.body.idService,
         "name": req.body.name,
+        "price": req.body.price,
+        "description": req.body.description,
         "state": true,
     }
         
