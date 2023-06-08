@@ -83,7 +83,7 @@ app.post('/saveReserve', async (req, res) => {
         "color_vehicle": req.body.colorVehicle,
         "date_reserve": req.body.dateReserve,
         "hour_reserve": req.body.hourReserve,
-        "description_service": req.body.descriptionService,
+        "name_service": req.body.nameService,
         "idOperator": req.body.idOperator,
         "name_operator": req.body.nameOperator,
         "idUser": req.body.idUser,
@@ -94,6 +94,8 @@ app.post('/saveReserve', async (req, res) => {
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
         "type_service": req.body.typeService,
+        "price": req.body.price,
+        "description_service": req.body.descriptionService,
         "qualification": 0,
         "state": req.body.state,
     }
@@ -193,7 +195,7 @@ app.put('/editReserve/:idReserve', async (req, res) => {
         "color_vehicle": req.body.colorVehicle,
         "date_reserve": req.body.dateReserve,
         "hour_reserve": req.body.hourReserve,
-        "description_service": req.body.descriptionService,
+        "name_service": req.body.nameService,
         "idOperator": req.body.idOperator,
         "name_operator": req.body.nameOperator,
         "idUser": req.body.idUser,
@@ -204,6 +206,8 @@ app.put('/editReserve/:idReserve', async (req, res) => {
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
         "type_service": req.body.typeService,
+        "price": req.body.price,
+        "description_service": req.body.descriptionService,
         "state": req.body.state,
     }
     await db.collection('Reserve').where("idReserve","==",req.params.idReserve).get().then((querySnapshot) => {
