@@ -346,6 +346,8 @@ app.put('/deleteService/:idService', async (req, res) => {
 app.put('/editService/:idService', async (req, res) => {
     const data = {
         "name": req.body.name,
+        "price": req.body.price,
+        "description": req.body.description
     }
     await db.collection('Service').where("id","==",req.params.idService).get().then((querySnapshot) => {
         querySnapshot.forEach((doc)=>{
