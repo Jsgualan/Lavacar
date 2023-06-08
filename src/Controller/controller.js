@@ -94,7 +94,7 @@ app.post('/saveReserve', async (req, res) => {
         "name_user": req.body.nameUser,
         "type_vehicle": req.body.typeVehicle,
         "type_service": req.body.typeService,
-        "qualification": 5,
+        "qualification": 0,
         "state": req.body.state,
     }
 
