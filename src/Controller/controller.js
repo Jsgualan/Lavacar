@@ -361,6 +361,18 @@ app.put('/editService/:idService', async (req, res) => {
     })
 })
 
+app.put('/editQualification/:idReserve', async (req, res) => {
+    const data = {
+        "qualification": req.body.qualification,
+    }
+    await db.collection('Reserve').where("idReserve","==",req.params.idReserve).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+            doc.ref.update(data)
+        })
+        res.status(200).send({ en: 1, m:'Calificación enviada correctamente'});
+    })
+})
+
 
 
 module.exports = app;
