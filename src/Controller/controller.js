@@ -97,6 +97,7 @@ app.post('/saveReserve', async (req, res) => {
         "price": req.body.price,
         "description_service": req.body.descriptionService,
         "qualification": 0,
+        "additionalValue": req.body.additionalValue,
         "state": req.body.state,
     }
 
@@ -208,6 +209,7 @@ app.put('/editReserve/:idReserve', async (req, res) => {
         "type_service": req.body.typeService,
         "price": req.body.price,
         "description_service": req.body.descriptionService,
+        "additionalValue": req.body.additionalValue,
         "state": req.body.state,
     }
     await db.collection('Reserve').where("idReserve","==",req.params.idReserve).get().then((querySnapshot) => {
